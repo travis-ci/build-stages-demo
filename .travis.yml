@@ -1,0 +1,12 @@
+sudo: false
+
+env:
+  - FOO=foo
+  - FOO=bar
+
+script: echo $FOO
+
+jobs:
+  include:
+    - stage: deploy
+      script: echo Deploy
