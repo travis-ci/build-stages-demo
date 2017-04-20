@@ -4,9 +4,9 @@ Branches on this repository contain several demo `.travis.yml` files, as well as
 
 For example:
 
-* A test stage with two jobs, and a deploy with one job: [Branch](https://github.com/travis-ci/build-stages-demo/blob/deploy-stage), [Build on Travis CI](https://build-stages-beta.travis-ci.org/travis-ci/build-stages-demo/builds/223978731)
-* Run several stages, including deployments to staging and production: [Branch](https://github.com/travis-ci/build-stages-demo/blob/master), [Build on Travis CI](https://build-stages-beta.travis-ci.org/travis-ci/build-stages-demo/builds/223978563)
-* Using build stages combined with matrix expansion: [Branch](https://github.com/travis-ci/build-stages-demo/blob/matrix-expansion), [Build on Travis CI](https://build-stages-beta.travis-ci.org/travis-ci/build-stages-demo/builds/223978873)
+* A test stage with two jobs, and a deploy with one job: [Branch](https://github.com/travis-ci/build-stages-demo/tree/deploy-stage), [Build on Travis CI](https://build-stages-beta.travis-ci.org/travis-ci/build-stages-demo/builds/223978731)
+* Run several stages, including deployments to staging and production: [Branch](https://github.com/travis-ci/build-stages-demo/tree/master), [Build on Travis CI](https://build-stages-beta.travis-ci.org/travis-ci/build-stages-demo/builds/223978563)
+* Using build stages combined with matrix expansion: [Branch](https://github.com/travis-ci/build-stages-demo/tree/matrix-expansion), [Build on Travis CI](https://build-stages-beta.travis-ci.org/travis-ci/build-stages-demo/builds/223978873)
 * Sharing files between stages via S3: [Branch](https://github.com/travis-ci/build-stages-demo/tree/shared-storage-with-s3), [Build on Travis CI](https://build-stages-beta.travis-ci.org/travis-ci/build-stages-demo/builds/)
 
 Feel free to fork this repository, hook it up to Travis CI, and try out the examples. If you have other interesting usecases we'd love a pull request :)
