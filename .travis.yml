@@ -1,54 +1,31 @@
 # This configuration uses S3 as shared storage between different
-# build stages
+# build stages.
 
-# Assumptions
-# * S3 credentials with correct authoriaztion are set up in Settings
-#    (they can also be configured here)
-
+# It assums S3 credentials to be set up in the repository settings
+# or to be configured as encrypted env vars here.
 
 sudo: false
-
 
 env:
   global:
     # include $HOME/.local/bin for `aws`
     - PATH=$HOME/.local/bin:$PATH
-  # If you are using caches, be careful with setting $SHARED_DIR to
-  # something cache may touch. It could affect your jobs in mysterious ways
-    - SHARED_DIR=shared
 
 before_install:
   # set up awscli packages
   - pip install --user awscli
-  - mkdir -p $SHARED_DIR
-  # sync up $SHARED_DIR with S3
-  - aws s3 sync s3://travis-build-stages-shared-storage-test/$SHARED_DIR $SHARED_DIR
-
+  - mkdir -p ~/shared
+  - aws s3 sync s3://travis-build-stages-shared-storage-test/shared ~/shared
 
 jobs:
   include:
-    - stage: unit tests
-      script: echo one | tee > $SHARED_DIR/one
-    - stage: unit tests
-      script: echo two | tee > $SHARED_DIR/two
-    - stage: deploy to staging
-      script: skip
-      deploy: &heroku
-        provider: heroku
-        app: sf-stages-staging
-        api_key: $HEROKU_AUTH_TOKEN
-        on: sf-stages-demo
-    - stage: test staging
+    - stage: setup file 1
+      script: echo one | tee > ~/shared/one
+    - stage: setup file 2
+      script: echo two | tee > ~/shared/two
+    - stage: use shared files 
       script:
-        - cat $SHARED_DIR/*
-        - 'curl http://sf-stages-staging.herokuapp.com'
-    - stage: deploy to production
-      script: /bin/true
-      deploy:
-        <<: *heroku
-        app: sf-stages-production
-    - stage: test production
-      script: 'curl http://sf-stages-production.herokuapp.com'
+        - cat ~/shared/*
 
 after_success:
-  - aws s3 sync $SHARED_DIR s3://travis-build-stages-shared-storage-test/$SHARED_DIR
+  - aws s3 sync ~/shared s3://travis-build-stages-shared-storage-test/shared
