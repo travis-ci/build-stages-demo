@@ -1,6 +1,6 @@
 {
   "name": "travis-build-stages-demo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A demonstration of how to deploy to npm with Travis build stages",
   "main": "index.js",
   "scripts": {
