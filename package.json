@@ -1,0 +1,19 @@
+{
+  "name": "travis-build-stages-demo",
+  "version": "0.0.1",
+  "description": "A demonstration of how to deploy to npm with Travis build stages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/travis-ci/build-stages-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/travis-ci/build-stages-demo/issues"
+  },
+  "homepage": "https://github.com/travis-ci/build-stages-demo#readme"
+}

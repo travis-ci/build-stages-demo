@@ -1,19 +1,23 @@
 sudo: false
 dist: trusty
 
-rvm:
-  - 2.2
-  - 2.3
+language: node_js
+node_js:
+  - "7"
+  - "6"
+  - "5"
+  - "4"
 
-script: echo "Running tests against $(ruby -v) ..."
+script: echo "Running tests against $(node -v) ..."
 
 jobs:
   include:
-    - stage: gem release
-      rvm: 2.2
-      script: echo "Deploying to rubygems.org ..."
+    - stage: npm release
+      node_js: "7"
+      script: echo "Deploying to npm ..."
       deploy:
-        provider: rubygems
+        provider: npm
+        email: "b@chromatin.ca"
+        api_key: $NPM_API_KEY
         gem: travis-build-stages-demo
-        api_key: $RUBYGEMS_API_KEY
-        on: deploy-gem-release
+        on: deploy-npm-release
