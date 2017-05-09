@@ -19,9 +19,9 @@ before_install:
 
 jobs:
   include:
-    - stage: setup file 1
+    - stage: setup files
       script: echo one | tee > ~/shared/one
-    - stage: setup file 2
+    - stage: setup files
       script: echo two | tee > ~/shared/two
     - stage: use shared files 
       script:
