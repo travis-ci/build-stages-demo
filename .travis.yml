@@ -1,12 +1,19 @@
 sudo: false
+dist: trusty
+
+rvm:
+  - 2.2
+  - 2.3
 
 env:
   - FOO=foo
   - FOO=bar
-
+  
 script: echo $FOO
 
 jobs:
   include:
     - stage: deploy
       script: echo Deploy
+      rvm: 2.3
+      env: FOO=foo
