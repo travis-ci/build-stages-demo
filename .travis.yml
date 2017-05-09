@@ -1,24 +1,19 @@
 sudo: false
+dist: trusty
+
+rvm:
+  - 2.2
+  - 2.3
+
+script: echo "Running tests against $(ruby -v) ..."
 
 jobs:
   include:
-    - stage: unit tests
-      script: echo one
-    - stage: unit tests
-      script: echo two
-    - stage: deploy to staging
-      script: skip
-      deploy: &heroku
-        provider: heroku
-        app: sf-stages-staging
-        api_key: $HEROKU_AUTH_TOKEN
-        on: sf-stages-demo
-    - stage: test staging
-      script: 'curl http://sf-stages-staging.herokuapp.com'
-    - stage: deploy to production
-      script: /bin/true
+    - stage: gem release
+      rvm: 2.2
+      script: echo "Deploying to rubygems.org ..."
       deploy:
-        <<: *heroku
-        app: sf-stages-production
-    - stage: test production
-      script: 'curl http://sf-stages-production.herokuapp.com'
+        provider: rubygems
+        gem: travis-build-stages-demo
+        api_key: $RUBYGEMS_API_KEY
+        on: deploy-gem-release
