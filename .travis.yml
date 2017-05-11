@@ -1,24 +1,12 @@
-sudo: false
+sudo: true
 dist: trusty
-
-rvm:
-  - 2.2
-  - 2.3
-  
-script: echo "Running tests ..."
 
 jobs:
   include:
-    - stage: deploy to staging
-      rvm: 2.3
-      install: skip # bundle install is not required
-      script: echo "Deploying to staging ..."
-    - &test-staging
-      stage: test staging
-      rvm: 2.3
-      install: skip
-      script: echo "Testing staging, shard 1 ..."
-    - <<: *test-staging
-      script: echo "Testing staging, shard 2 ..."
-    - <<: *test-staging
-      script: echo "Testing staging, shard 3 ..."
+    - stage: build docker image
+      script:
+      - docker build
+      - docker push
+    - stage: test
+      script: docker run
+    - script: docker run
