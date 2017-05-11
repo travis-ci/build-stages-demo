@@ -1,15 +1,24 @@
 sudo: false
 dist: trusty
 
+rvm:
+  - 2.2
+  - 2.3
+  
+script: echo "Running tests ..."
+
 jobs:
   include:
-    - script: echo "Running unit tests (1)"
-    - script: echo "Running unit tests (2)"
-    - stage: GitHub Release
-      script: skip
-      deploy:
-        provider: releases
-        api_key: "$GITHUB_OAUTH_TOKEN"
-        skip_cleanup: true
-        on:
-          tags: true
+    - stage: deploy to staging
+      rvm: 2.3
+      install: skip # bundle install is not required
+      script: echo "Deploying to staging ..."
+    - &test-staging
+      stage: test staging
+      rvm: 2.3
+      install: skip
+      script: echo "Testing staging, shard 1 ..."
+    - <<: *test-staging
+      script: echo "Testing staging, shard 2 ..."
+    - <<: *test-staging
+      script: echo "Testing staging, shard 3 ..."
