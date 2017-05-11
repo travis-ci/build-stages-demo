@@ -1,15 +1,15 @@
 sudo: false
 dist: trusty
 
+env:
+- TEST_SUITE=integration_tests
+- TEST_SUITE=unit_tests
+
+script: bundle exec rake test:$TEST_SUITE
+
 jobs:
   include:
-    - script: echo "Running unit tests (1)"
-    - script: echo "Running unit tests (2)"
-    - stage: GitHub Release
-      script: skip
-      deploy:
-        provider: releases
-        api_key: "$GITHUB_OAUTH_TOKEN"
-        skip_cleanup: true
-        on:
-          tags: true
+    - stage: deploy
+      env: TEST_SUITE=none
+      install: skip # bundle install is not required
+      script: ./deploy.sh
