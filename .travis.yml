@@ -7,6 +7,7 @@ jobs:
       script:
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       - docker build -t travis-ci-build-stages-demo .
+      - docker images
       - docker push travis-ci-build-stages-demo
     - stage: test
       script: docker run --rm travis-ci-build-stages-demo cat hello.txt
