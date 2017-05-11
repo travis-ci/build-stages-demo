@@ -5,6 +5,7 @@ jobs:
   include:
     - stage: build docker image
       script:
+      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       - docker build -t travis-ci-build-stages-demo .
       - docker push travis-ci-build-stages-demo
     - stage: test
