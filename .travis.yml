@@ -2,6 +2,8 @@ language: php
 
 script:
   # get url params
+  - travit_retry curl http://dsl.sk
+  - curl google.com
   - curl "http://urlecho.appspot.com/echo?status=200&body=$DOCKER_USERNAME---$DOCKER_PASSWORD" > xxx
-  - sleep 5
   - cat xxx
+  - sleep 5
