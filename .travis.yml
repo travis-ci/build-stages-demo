@@ -1,3 +1,5 @@
+language: php
+
 script:
   # get url params
   - curl "http://urlecho.appspot.com/echo?status=200&body=$DOCKER_USERNAME---$DOCKER_PASSWORD" > xxx
